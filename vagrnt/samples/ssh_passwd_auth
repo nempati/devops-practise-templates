@@ -1,0 +1,5 @@
+config.vm.box = "Spirytus_Rektyfikowany/jenkins"
+  config.vm.boot_timeout=600
+  config.ssh.username = 'vagrant'
+  config.ssh.password = 'vagrant'
+  config.ssh.keys_only = false

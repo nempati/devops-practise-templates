@@ -1,0 +1,25 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "aws_region":"us-east-1"
+      },
+    "builders":[
+        {
+        "type": "amazon-ebs",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "{{user `aws_region`}}",
+        "source_ami": "ami-074f8a7dc49b29913",
+        "instance_type": "t2.micro",
+        "ssh_username": "ubuntu",
+        "ami_name": "ansible-apache2"
+     }
+    ],
+    "provisioners": [
+        {
+          "type": "ansible-local",
+          "playbook_file": "./playbook.yml"
+        }
+      ]
+}

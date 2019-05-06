@@ -1,0 +1,34 @@
+created  a  httpd container now to host a html file through that container
+
+the index.html file location is /usr/local/apache/htdocs here remove the html file and copy the html file u want 
+
+this httpd is a container iamge how to get into conatiner for editing some files 
+
+to enter into docker container we must  execute the follawing command
+
+docker exec -it conatiner_id /bin/bash
+
+here it opens the bash terminal of the container as root no need of sudo act here it itself is root user so enter into any folder 
+change the things you want and exit with by pressing ctrl+p+q this means read ezcape sequnace if we use exit keyword or ctrl+c it kills
+the process
+
+
+=============================================================================================================================================
+
+now to use volumes for containers  
+
+volumes: the path where we want to add a file(s) or folder(s)  while creating the conatiner 
+
+what are the  uses of volumes we have a 5  files which are about 500mb which are also presnt in network location to download 
+this same files are to be used in five different conatiners for scaling process so either downloading them in every conatiner we can copy
+them into a specific folder where them must execute backdrop of volumes concept in docker conatiner is one same folder in host cant be used for 
+diffrent containers 
+
+docker run --name sqldb -p host_pc_port:conatiner_port -v host_pc_path:conatiner_path mysql -d 
+
+here it creates a path between host machine to hosted conatiner for using it now if any file changes in any where i.e; in host or conatiner 
+same files replicates in both areas now if this conatiner has issues we can create another conatinerwith same files and host it again this a
+also worked as a backup 
+
+==================================================================
+

@@ -1,0 +1,56 @@
+docker networking:-
+
+here we are not gooing to learn about network of linux machine or windows server its about docker network connection 
+
+    swarm mode:-
+docker swarm Docker Swarm is a clustering and scheduling tool for Docker containers. 
+With Swarm, IT administrators and developers can establish and manage a cluster of Docker nodes as a single virtual system
+
+in docker 1.12 and newer it is pre installed  swarm mode natively exits b/w os and conatiner images layers it helps in orchestartion 
+
+clustering is an important feature for conatiner technology  which helps in providing reduandancy , b/w group of machines which are working 
+to-gether, enabling docker swarm failover if one or more nodes outage is thier it also gives administrators privilage for reducing and increasing
+containers
+
+
+this used cni (conatiner network interface) for orchestartion when we want  to create  a network b/w docker which are in diffrent machines, which are reachable to each
+other 
+
+
+            multi-host overlay:-
+
+    node1                                     node2                             node3                         node3
+    (192.168.100.121)                         (172.182.68.36)                   (111.182.14.12)               (112.152.25.16)
+    conatiner                                 conatiner                         conatiner                     conatiner
+    (10.0.0.2)                                 (10.0.0.8)                       (10.0.0.11)                   (10.0.0.50)
+
+                                                |                                       |
+                                                |                                       | 
+                                                |           overlay 10.0.0.0/24         |
+                                                |                                       |
+
+
+thier are 3 nodes which are in diffrent networks and are ping able to each other each node is installed with docker now to use swarm network  we need a overlay network
+it is atype of network which looks like a physical network for conatiners they are in diffrent networks but look like they are in same network , it creates a tunnel 
+where packets are transfered b/w each  conatiner they are connected with 
+
+
+here we used  4 nodes in that one will be master and other will be working nodes 
+
+in master  execute (docker swarm init)  we will get a token id copy into a notepad and use this tokken for joining worker nodes 
+
+in rest of nodes paste this and execute and all the nodes get connected to master 
+
+to see the nodes list in master execute this (docker nodes ls)
+
+create a overlay network now (docker network create -d overlay somename)
+
+this cerated a overlay and nodes are also in same overlay
+
+to see network list (docker network ls)
+
+now to deploy conatiner from master to nodes this is called as service 
+
+in master (docker service create --name some_service_name --network overlay_name --replicas 2 image_name_of_docker )
+
+(docker service ps service_name -manager)

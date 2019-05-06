@@ -1,0 +1,23 @@
+---
+- moviesname:
+  - telugu:
+  
+    - name: "1"
+      hero: "a"
+      director: "b"
+      heroine: "c"
+
+    - name: "2"
+      hero: "d"
+      director: "e"
+      heroine: "f"
+      
+    - name: "3"
+      hero: "a"
+      director: "b"
+      heroine: "c"
+
+    - name: "4"
+      hero: "a"
+      director: "b"
+      heroine: "c"

@@ -1,0 +1,37 @@
+docker run: this command creates a conatiner of a particular image u want 
+docker pull: this commands downloads a particular image from registry
+docker image ls: gives the list of docker  images your local machine has downloaded and crreated
+docker container ls : list the docker conatiner  containers in local machine 
+docker rm: to remove a particular conatiner (docker rm container_id)
+docker rmi: remove particular image 
+
+geting into conceptd
+
+running a container:-
+
+        docker run -p 80:80 --name httpd httpd -d 
+
+here docker runs a continer with a image of httpd A.K.a apache2 we used
+ 
+"run" to run conatiner 
+
+"-p" for port mapping  "80:80: here the first 80 is the port of machine where docker is hosted next 80 is the port of conatiner
+ so we mapped that port of continer which to work is 80 so mapped to any  port of machine to work 
+
+ "--name httpd"  to name the conatiner u want to create  here we have given httpd 
+
+ "httpd" the image in hub.docker registry
+
+docker images ls: list the images that are in your local machine 
+
+docker image ls -a : every detail about image
+
+docker rmi image_id: removes a  spesific image
+
+docker conatiner ls: list the alive containers
+
+docker conatiner ls -a : all dead and alive list
+
+docker rm container_id: removes spesific conatiner
+
+docker rm $(docker ps -a -q) rempves all containers

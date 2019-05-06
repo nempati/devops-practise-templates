@@ -1,0 +1,11 @@
+ hosts: #in which machines u want to install make them into group in ansible inventory and give that name 
+  become: yes
+  tasks:
+  - name: "instaling nginx"
+    apt:
+      name: nginx
+      state: present
+  - name: "ensuring the service is stopped"
+    service:
+      name: nginx
+      state: stopped

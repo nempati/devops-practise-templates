@@ -1,0 +1,23 @@
+#to open ports we must enable firwall command is
+
+ufw enable 
+
+ufw status
+
+make it root and follow these commands 
+
+
+
+ ufw allow 6443 
+ ufw allow 2379
+ ufw allow 2380
+ ufw allow 10251:10252/tcp  
+
+
+ #in worker node
+
+ ufw allow 10250
+
+ ufw allow 30000:32767/tcp
+
+

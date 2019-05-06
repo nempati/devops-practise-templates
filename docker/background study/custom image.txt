@@ -1,0 +1,43 @@
+custom image what is custom image what can we do with it
+
+custom image it is a image with our prefernces and objects we can create it and host 
+
+how to build it what are its attributes  and commands 
+
+    >   it is a dockerfile 
+    >   it has some main attributes 
+            . FROM :- this is a part where base image we use like ubuntu , redhat, tomcat , debian 
+            . MAINTAINER :- group name or personal name
+            . RUN :- to run commands such as apt yum and some other things 
+            . COPY :- files or folders to copy into image from host pc
+            . ADD :- files or folders to copy into image from host pc or from network
+            . CMD : ["__" , "__"]
+            . ENV :- environmentl variables to declare them 
+            . EXPOSE :- port number of image to use
+            . VOLUME :- 
+            . WORKDIR :- TO AUTOMAticaly create a folder(s) or paths or changes starting directory
+            . ARG can be called while building the image 
+
+lets take an example of it 
+
+FROM : ubuntu 14:04
+RUN : apt update & apt install git -y 
+RUN : apt install apache2 -y
+COPY : some file into base folder of index.html file 
+EXPOSE : 80
+CMD : ["echo" , "its is done yaar"]
+
+build this dockerfile 
+        docker build -t my/apache2:0.1 . 
+
+        -t it is tag we have given name and version for it 
+
+        dot after name means the file path of docker file
+
+if all arguments are sucess it builds or else it says it has a a error in a specific line 
+
+run it and we will have that image runing 
+
+.dockerignore :- create a file with this name in which we have created dockerfile and give the names of file you want to exclude coping
+ into contianer image
+ 

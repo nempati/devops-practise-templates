@@ -1,0 +1,22 @@
+"builders": [{
+    "type": "azure-arm",
+
+    "client_id": "{{user `client_id`}}",
+    "client_secret": "{{user `client_secret`}}",
+    "subscription_id": "{{user `subscription_id`}}",
+
+    "os_type": "Linux",
+    "image_publisher": "Canonical",
+    "image_offer": "UbuntuServer",
+    "image_sku": "16.04-LTS",
+
+    "managed_image_resource_group_name": "packertest",
+    "managed_image_name": "MyUbuntuImage",
+
+    "azure_tags": {
+        "dept": "engineering",
+        "task": "image deployment"
+    },
+
+    "location": "South Central US",
+    "vm_size": "Standard_DS2_v2"

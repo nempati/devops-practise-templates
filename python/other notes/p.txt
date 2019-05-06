@@ -1,0 +1,42 @@
+Microsoft Windows [Version 10.0.17134.523]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\praveen>python
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> X=PYTHON
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'PYTHON' is not defined
+>>> X="PYTHON"
+>>> x[-6:]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'x' is not defined
+>>> X[-6:]
+'PYTHON' (include
+>>> X[:-6]
+''
+>>> X[:-1]
+'PYTHO' (exclude)
+>>>
+>>> X=2+3J
+>>> type(X)
+<class 'complex'>
+>>>
+
+
+
+x = "iampython"
+
+
+i a m p y t h o n
+0 1 2 3 4 5 6 7 8
+         -4-3 -2-1
+.
+
+
+
+
+
+=====================

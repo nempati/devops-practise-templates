@@ -1,0 +1,21 @@
+---
+- host: all
+  become: yes
+  vars:
+    package_name: apache2
+  tasks:
+  - name: "install webserver"
+    package:
+      name:
+      state: present
+
+# ansible-playbook -i "inventory/hosts" -e "" webserver.yml  
+
+
+# here we are using playbook for redhat and debian servers-
+# -and it shuould install what is sensabile for them
+# example in debian we have httpd in redhat we have apache2 for apache webserver
+# so we have to hardcore the playbook in a way that they must take thier values 
+# from somewhere else 
+# to installwebserver  
+ 
