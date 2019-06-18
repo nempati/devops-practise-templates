@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "public_network"
   end
-  config.vm.define "node-1" do 
+  config.vm.define "node-2" do 
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "public_network"
   end
