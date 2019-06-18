@@ -1,0 +1,15 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "ansible_cm_server" do
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "public_network"
+  end
+  config.vm.define "node-1" do 
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "public_network"
+  end
+  config.vm.define "node-1" do 
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "public_network"
+  end
+  end
+  
