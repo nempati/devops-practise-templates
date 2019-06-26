@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: install webserver
+    package: 
+     name: "{{ package_name }}"
+     state: present
+
+
+
+# here vars are declared in hosts file only, hosts file doesnot need to be the file in /etc/asnible/hosts 
+# we can use from other path also 
+
+# in playbooks folder create a folder named as inventory 
+# give  a new file as hosts 
+# give some entries (Private dns name )
+
+# to declare our variables we need a diff path 
+
+#where we host file thier create two folders 1 with group_vars
+# 2nd with host_vars  this is the best approach for vraiable workout
+
+#in group_vars 

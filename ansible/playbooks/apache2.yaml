@@ -1,8 +1,0 @@
----
-- hosts: #in which machines u want to install make them into group in ansible inventory and give that name 
-  become: yes
-  tasks:
-  - name: "instaling apache2"
-    apt:
-      name: apache2
-      state: present

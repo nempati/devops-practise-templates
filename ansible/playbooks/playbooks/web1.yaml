@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    package_name: apache2
+  task:
+  - name: install webserver
+    package: 
+      name: "{{ package_name }}"
+      state: present
+
+# if we run this paly book it will install apache2 only then how is it used to install 
+
+#this command is used to bypass the vars name of "package_name"  -e extra vars is used for bypassingg
+#  ansible-playbook -e "package_name=httpd" webserver.yaml
+# but this is not a good way 
