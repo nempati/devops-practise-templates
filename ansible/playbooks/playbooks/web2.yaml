@@ -20,4 +20,39 @@
 #where we host file thier create two folders 1 with group_vars
 # 2nd with host_vars  this is the best approach for vraiable workout
 
-#in group_vars 
+#in group_vars create file Redhat.yaml here give the data
+#  ---  
+#  - package_name: httpd 
+
+# Debian.yaml
+# ---
+# - package_name: apache2
+
+# ansible-playbook -i "inventory/hosts" web2.yaml
+
+# we no need to tell where is our variables are 
+# why because in inventory folder we have group_vars it will read the variables from thier
+
+# what is the use of host_vars folder then 
+
+#group_vars is used for group of nodes to configure
+
+#hosts_vars is used to configure single node 
+
+# in hosts file under Debian group we have 2 nodes one is used for apache2 and other for nginx 
+# so in hosts_vars create a file name under that host-name 
+
+# ---
+# - package_name: nginx 
+
+#like this is used 
+
+
+# now we may get a dought that under Debian we have 2 nodes 
+# when we execute above cmd then it will install apche in that right 
+# no it wont
+
+
+# first group variable is read first then it will read hosts variable  what ever it reads last it will give first priority 
+
+# the last read thing is -e whenever we pass the argumrnt
