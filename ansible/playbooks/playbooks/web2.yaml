@@ -16,8 +16,7 @@
 # give some entries (Private dns name )
 
 # to declare our variables we need a diff path 
-
-#where we host file thier create two folders 1 with group_vars
+#where we have host file thier create two folders 1 with group_vars
 # 2nd with host_vars  this is the best approach for vraiable workout
 
 #in group_vars create file Redhat.yaml here give the data
