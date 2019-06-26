@@ -8,7 +8,6 @@
      state: present
 
 
-
 # here vars are declared in hosts file only, hosts file doesnot need to be the file in /etc/asnible/hosts 
 # we can use from other path also 
 
