@@ -1,3 +1,8 @@
 scp with pem file
 
 	scp -i mykey.pem somefile.txt root@my.ec2.id.amazonaws.com "destination"
+
+
+
+
+scp passwd filename username@hostname  "destination"

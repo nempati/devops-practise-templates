@@ -1,0 +1,4 @@
+sudo ufw allow proto tcp from any to any port 80,443,1122,3311
+
+
+#edit the numbers as u  want
