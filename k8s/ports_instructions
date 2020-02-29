@@ -6,7 +6,7 @@ ufw status
 
 make it root and follow these commands 
 
-
+#in master node
 
  ufw allow 6443 
  ufw allow 2379
@@ -19,5 +19,3 @@ make it root and follow these commands
  ufw allow 10250
 
  ufw allow 30000:32767/tcp
-
-
