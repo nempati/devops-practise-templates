@@ -1,0 +1,153 @@
+variables and facts 
+
+facts : facts are noting but the info about nodes attaaches to the cm server these are noting but gathering facts type
+
+variables: these are the values which we give for our convinence to get the work around 
+-------------------
+-------------------
+to install a webserver in a debian and redhat which has diffrent package names we can use help of variables 
+
+in debian => 
+in ubuntu =>
+
+to install apche server in these two flavored os's we have a  diffrent names those httpd and apache2 
+
+
+so  this same  playbook is defined to install apache server in both os's what ever is sensible to that 
+
+    so what ever is diffrent on this file dont write it here pull from somewhere else
+    for that we will be declaring a variable , rather then giving value over here we would be takeing from some where else
+    
+    * we can write it in playbook itself
+      something like
+                     vars:
+                         package_name: apache2
+     this will not solve our problem completly anyhow it will take value as  apache2 again in both but some how we got a idea 
+     when ever we want to use this package_name variable in a key value we use this syntax  "{{ package_name }}"
+
+PLAYBOOK APPEARS TO BE LIKE THIS 
+
+---
+- hosts: apache
+  become: yes
+  vars:
+    package_name: apache2
+  tasks:
+    - name: install webserver
+        package:
+          name: "{{ package_name }}"
+          state: present 
+
+
+*second method
+
+---
+- hosts: apache
+  become: yes
+  tasks:
+    - name: install webserver
+        package:
+          name: "{{ package_name }}"
+          state: present 
+
+
+here we wont use vars but variable is called, what i would do is i will define in my inventory 
+
+here vars are declared in hosts file only, hosts file doesnot need to be the file in /etc/asnible/hosts
+
+we can use from other path also 
+
+ in playbooks folder create a folder named as inventory 
+ give  a new file as hosts 
+ give some entries (Private dns name )
+
+[redhat]
+10.10.12.10
+
+[debian]
+10.20.20.10
+ 
+ now we have two two entries 1 is redhat 
+ other is Debian
+
+
+
+ to declare our variables we need a diff file
+where we have host file thier create two folders 1 with group_vars
+ 2nd with host_vars  this is the best approach for variable workout
+
+in group_vars create file Redhat.yaml here give the data
+  ---  
+  - package_name: httpd 
+
+ Debian.yaml
+ ---
+ - package_name: apache2
+
+ ansible-playbook -i "inventory/hosts" web2.yaml (syntax)
+
+
+ we no need to tell where is our variables are 
+ why because in inventory folder we have group_vars it will read the variables from thier
+
+ what is the use of host_vars folder then 
+
+group_vars is used for group of nodes to configure
+
+hosts_vars is used to configure single node 
+
+ in hosts file under Debian group we have 2 nodes one is used for apache2 and other for nginx 
+ so in hosts_vars create a file name under that host-name 
+
+ ---
+ - package_name: nginx 
+
+like this is used 
+
+
+ now we may get a dought that under Debian we have 2 nodes 
+ when we execute above cmd then it will install apche in that right 
+ no it wont
+
+
+ first group variable is read first then it will read hosts variable  what ever it reads last it will give first priority 
+
+ the last read thing is -e whenever we pass the argumrnt
+
+
+
+--------------------
+
+now to do update for debian and redhat we use apt-get update, yum update ,  here we cannot use apt and yum as a variable because these are 
+the modules which should not be wriiten as variables we can give variable for modules but module can t be taken as a variable
+"ref ansible modules apt in google for getiing syntaxes "
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: updating packages 
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+this will run in all machines because in hosts we have given "all" so we want to run this in only in ubuntu so we will add when: module
+when: ansible_os_family == "Debian"  now it runs only in debian hosts 
+
+now in redhat to update 
+
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: updating packages 
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name : updating redhat package
+      yum:
+        update_cache:yes
+      when: ansible_os_family == "redhat"
+
+-----------------------------------------------
+-----------------------------------------------

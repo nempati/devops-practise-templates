@@ -1,0 +1,109 @@
+ansible is a configuration managment tool 
+it is a push model 
+it requires credentilas of nodes to login 
+
+#installing ansible in C M server
+sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+
+#insatlling python2.7  in nodes 
+sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install pyhton
+
+#adding user and passwd  inall machines 
+adduser ansible
+passwd ansible
+
+#enabling passwd authentications in all machines
+sudo vi /etc/ssh/sshd.config
+passwordauthentication:yes
+service sshd restart
+
+#giving root previligaes to ansible in all machines
+sudo  #(become root user)
+visudo
+ansible (ALL)=(ALL) NOPASSWD:ALL
+
+#gen ssh key in C M server
+su ansible 
+cd ~
+ssh-keygen
+
+#copy this key into nodes
+
+ssh-copy-id ansible@DNS_of_host
+#by this above process we enable passwd less authentication
+#for ansible to login from C M server to nodes
+
+ssh ansible@hostname 
+
+#by the above coomand CM machine logins into nodes with out passwd
+# this is to  verify from us manually
+
+# Inventory
+it is located in /etc/ansible/hosts    in CM server 
+
+this hosts file is the inventory for us to add DNS host names for ansible service to communicate with nodes
+
+#playbooks
+the yaml file which is used to configure the nodes attached to cm,  playbooks has plays which used modules to complete the tasks 
+these modules are given by ansible 
+
+ansible can be operated by cli and playbooks
+
+when ever we want to control a single machine we use cli that process is called as ad-hoc commands
+
+#a  basic palybook 
+
+    #ping module
+ping.yaml
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: pinging all machines 
+        ping:
+ansible-playbook ping.yaml
+
+## Installing git in all machines
+git.yaml
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: installing git
+        apt: git
+        state: present 
+
+ansible-playbook git.yaml
+
+#### installing apache server in ubuntu and restarting the service
+
+apache.yaml
+
+---
+- hosts: ubuntu
+  become: yes
+  tasks:
+    - name: installing 
+        apt: apache2
+        state: present
+
+    - name: restart apache2 service
+        service: apache2
+        state: restart
+
+
+## gathering facts
+
+ansible -m setup localhost 
+
+- it gives all details about localhosts
+
+# installing via ad-hoc commands
+
+ansible -m apt "name=tree" --become

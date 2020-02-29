@@ -1,0 +1,42 @@
+#  with_items  , commands module
+
+i want to executr a installation but i have many things to install 
+
+utilities.yaml
+
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: installing utilities
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items: utilities
+
+here i want to install 10 softwares at a time what can we do is copy tasks 10 times and give packages names 
+but my packages name may keep changing
+
+in debian file give a variable called utilities give packages names git, tree, nano and in redhat also also
+
+----------------------------------------------
+
+to enter raw linux commands in playbooks we use a module which is not a idempotent  
+(ref: command module)
+
+commanddemo.yaml
+---
+- hosts: all
+  become: yes
+  gather_facts: not
+  tasks:
+  - name: "create file "
+    command: "touch /home/ubuntu/test.txt"
+  - name: "store contents"
+    command: echo "Hello" >> /home/ubuntu/test.txt
+  - name: "diplay content"
+    command: cat /home/ubuntu/test.txt
+    register: file_content
+  - debug:
+      msg: "{{ file_content }}"
+   
